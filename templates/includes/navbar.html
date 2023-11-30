@@ -1,98 +1,146 @@
-{%load static %}
+{% load static %}
+
 <header class="section-header">
-  <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
+  <nav class="navbar navbar-expand-md navbar-light border-bottom">
     <div class="container">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTop4">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link">English</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link">USD</a>
-          </li>
-        </ul>
         <ul class="navbar-nav">
-          <li>
-            <a href="#" class="nav-link"><i class="fa fa-envelope"></i> Email</a>
+          <!-- Follow Us Dropdown -->
+          <li class="nav-item dropdown mr-3">
+            <a class="btn btn-outline-primary d-md-none d-lg-inline-block" href="#" id="followUsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Follow Us
+            </a>
+            <div class="dropdown-menu" aria-labelledby="followUsDropdown" role="menu">
+              <div class="container" style="background-color: #f8f9fa;" role="navigation">
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <p class="mb-2 mt-2">
+                      <a href="#" class="social-link" style="color: #3b5998; margin: 0 5px;">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                        <span class="sr-only">Facebook</span>
+                      </a>
+                      <a href="#" class="social-link" style="color: #1da1f2; margin: 0 5px;">
+                        <i class="fab fa-twitter fa-lg"></i>
+                        <span class="sr-only">Twitter</span>
+                      </a>
+                      <a href="#" class="social-link" style="color: #e4405f; margin: 0 5px;">
+                        <i class="fab fa-instagram fa-lg"></i>
+                        <span class="sr-only">Instagram</span>
+                      </a>
+                      <a href="#" class="social-link" style="color: #0077b5; margin: 0 5px;">
+                        <i class="fab fa-linkedin-in fa-lg"></i>
+                        <span class="sr-only">LinkedIn</span>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
-          <li>
-            <a href="#" class="nav-link"><i class="fa fa-phone"></i> Call us</a>
+          <!-- Currency Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="btn btn-outline-primary d-md-none d-lg-inline-block" href="#" id="currencyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Currency
+            </a>
+            <div class="dropdown-menu" aria-labelledby="currencyDropdown" role="menu">
+              <!-- Add currency options here -->
+              <a class="dropdown-item" href="#">USD</a>
+              <a class="dropdown-item" href="#">EUR</a>
+              <a class="dropdown-item" href="#">GBP</a>
+              <!-- Add more currency options as needed -->
+            </div>
           </li>
         </ul>
-        <!-- list-inline // -->
+        <ul class="navbar-nav ml-auto">
+          <!-- Language Option -->
+          <li class="nav-item mr-3">
+            <a href="#" class="btn btn-outline-primary d-md-none d-lg-inline-block" role="button">
+              <i class="fas fa-globe"></i> Language
+            </a>
+          </li>
+          <!-- Call Us Option -->
+          <li class="nav-item mr-3">
+            <a href="#" class="btn btn-outline-primary d-md-none d-lg-inline-block" role="button">
+              <i class="fa fa-phone"></i> Call us
+            </a>
+          </li>
+          <!-- Email Option -->
+          <li class="nav-item mr-3">
+            <a href="#" class="btn btn-outline-primary d-md-none d-lg-inline-block" role="button">
+              <i class="fa fa-envelope"></i> Email
+            </a>
+          </li>
+        </ul>
       </div>
-      <!-- navbar-collapse .// -->
     </div>
-    <!-- container // -->
   </nav>
 
   <section class="header-main border-bottom">
     <div class="container">
       <div class="row align-items-center">
+        <!-- Brand Logo -->
         <div class="col-lg-2 col-md-3 col-6">
-          <a href="{% url 'home' %}" class="brand-wrap"><img class="logo" src="{% static './images/logo.png' %}" /></a>
-          <!-- brand-wrap.// -->
+          <a href="{% url 'home' %}" class="brand-wrap"><img class="logo img-fluid" src="{% static './images/logo.png' %}" alt="Your Brand Logo" /></a>
         </div>
-        <div class="col-lg col-sm col-md col-6 flex-grow-0">
+        <!-- Category Dropdown -->
+        <div class="col-lg col-md col-sm col-6 flex-grow-0">
           <div class="category-wrap dropdown d-inline-block float-right">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Categories
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="categoryDropdown">
-                  <a class="dropdown-item" href="{% url 'store' %}">All Products</a>
-                  {% for category in links %}
-                      <a class="dropdown-item{% if request.resolver_match.url_name == 'products_by_category' and request.resolver_match.kwargs.slug == category.slug %} active{% endif %}" href="{{ category.get_url }}">{{ category.category_name }}</a>
-                  {% endfor %}
-              </div>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars"></i> All Categories
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="categoryDropdown" role="menu">
+              <a class="dropdown-item" href="{% url 'store' %}">All Products</a>
+              {% for category in links %}
+                <a class="dropdown-item{% if request.resolver_match.url_name == 'products_by_category' and request.resolver_match.kwargs.slug == category.slug %} active{% endif %}" href="{{ category.get_url }}">
+                  <i class="fa fa-tag"></i> {{ category.category_name }}
+                </a>
+              {% endfor %}
+            </div>
           </div>
-      </div>
-      
-        <!-- col.// -->
-        <a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
-        <div class="col-lg col-md-6 col-sm-12 col">
-          <form action="#" class="search">
-            <div class="input-group w-100">
-              <input type="text" class="form-control" style="width: 60%" placeholder="Search" />
+        </div>
 
+        <a href="{% url 'store' %}" class="btn btn-outline-primary d-md-none d-lg-inline-block" role="button">Store</a>
+
+        <!-- Search Form -->
+        <div class="col-lg col-md-6 col-sm-12 col">
+          <form action="{% url 'search_results' %}" method="GET" class="search">
+            <div class="input-group w-100">
+              <input type="text" name="keyword" class="form-control" style="width: 60%" placeholder="Search" required/>
               <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary search-button" type="submit">
                   <i class="fa fa-search"></i>
+                  <span class="sr-only">Search</span>
                 </button>
               </div>
             </div>
           </form>
-          <!-- search-wrap .end// -->
         </div>
-        <!-- col.// -->
+
+
+        <!-- User Authentication and Cart Section -->
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
           <div class="d-flex justify-content-end mb-3 mb-lg-0">
             <div class="widget-header">
-              <small class="title text-muted">Welcome guest!</small>
+              <small class="title text-muted d-none d-md-block">Welcome guest!</small>
               <div>
-                <a href="./signin.html">Sign in</a>
+                <a href="./signin.html" class="btn btn-link" role="button">Sign in</a>
                 <span class="dark-transp">|</span>
-                <a href="./register.html">Register</a>
+                <a href="./register.html" class="btn btn-link" role="button">Register</a>
               </div>
             </div>
-            <a href="./cart.html" class="widget-header pl-3 ml-3">
+            <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3" data-toggle="tooltip" data-placement="bottom" title="View Cart" role="button">
               <div class="icon icon-sm rounded-circle border">
                 <i class="fa fa-shopping-cart"></i>
               </div>
-              <span class="badge badge-pill badge-danger notify">0</span>
+              <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
             </a>
           </div>
-          <!-- widgets-wrap.// -->
         </div>
-        <!-- col.// -->
       </div>
-      <!-- row.// -->
     </div>
-    <!-- container.// -->
   </section>
-  <!-- header-main .// -->
 </header>
-<!-- section-header.// -->

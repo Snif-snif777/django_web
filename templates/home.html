@@ -1,42 +1,46 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
   <!-- ========================= SECTION MAIN ========================= -->
   <section class="section-intro padding-y-sm">
     <div class="container">
       <div class="intro-banner-wrap">
-        <img src="{% static 'images/banners/2.jpg' %}" class="img-fluid rounded" />
+        <img src="{% static 'images/banners/2.jpg' %}" class="img-fluid rounded custom-banner" alt="Intro Banner Image">
       </div>
     </div>
     <!-- container // -->
   </section>
   <!-- ========================= SECTION MAIN END// ========================= -->
 
-  <!-- ========================= SECTION ========================= -->
+  <!-- ========================= SECTION POPULAR PRODUCTS ========================= -->
   <section class="section-name padding-y-sm">
     <div class="container">
-      <header class="section-heading">
-        <a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
-        <h3 class="section-title">Popular products</h3>
+      <header class="section-heading d-flex justify-content-between align-items-center">
+        <h2 class="section-title mb-4">Explore Popular Products</h2>
+        <a href="{% url 'store' %}" class="btn btn-outline-primary btn-sm">See All</a>
       </header>
-      <!-- sect-heading -->
-
+  
       <div class="row">
         {% for product in products %}
-          <div class="col-md-3">
-            <div class="card card-product-grid">
-              <a href="{{ product.get_url }}" class="img-wrap"><img src="{{ product.images.url }}" /></a>
-              <figcaption class="info-wrap">
-                <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
-                <div class="price mt-1">$ {{ product.price }}</div>
-                <!-- price-wrap.// -->
-              </figcaption>
+          <div class="col-md-4">
+            <div class="card card-product-grid border-0">
+              <a href="{{ product.get_url }}" class="img-wrap">
+                <img src="{{ product.images.url }}" class="img-fluid product-image" alt="{{ product.product_name }}" />
+              </a>
+              <div class="card-body">
+                <h5 class="card-title product-name">
+                  <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                </h5>
+                <p class="card-text price">
+                  <i class="fas fa-dollar-sign"></i> {{ product.price }}
+                </p>
+              </div>
             </div>
           </div>
         {% endfor %}
-        <!-- col.// -->
       </div>
-      <!-- row.// -->
     </div>
-    <!-- container // -->
-  </section>
-  <!-- ========================= SECTION END// ========================= -->
+  </section>  
 {% endblock %}
+

@@ -2,6 +2,7 @@
 /* ==== BASE STYLES ====*/
 /* ==================== GLOBAL STYLES ======================= */
 @import url("https://rsms.me/inter/inter.css");
+/* styles.css */
 
 html {
   font-family: "Inter", sans-serif;
@@ -1598,12 +1599,12 @@ a[class*=card]:hover .title {
 }
 
 .dropdown-toggle::before {
-  content: "\25BC"; /* Unicode character for down arrow */
   margin-left: 0.5rem;
 }
 
 .dropdown-toggle.active::before {
-  content: "\25B2"; /* Unicode character for up arrow */
+  content: "\25B2";
+  /* Unicode character for up arrow */
 }
 
 .dropdown-item {
@@ -1620,6 +1621,227 @@ a[class*=card]:hover .title {
   color: #fff;
 }
 
+/* Add these styles to your CSS file */
+
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.quantity a {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #495057;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.quantity input {
+  width: 40px;
+  text-align: center;
+  margin: 0 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.quantity a:hover {
+  background-color: #e9ecef;
+}
+
+/* Optional: Adjust the styles based on your design preferences */
+.success-alert {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 1rem;
+  width: 30%;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+  margin-bottom: 10px;
+  /* Adjust this value as needed */
+}
+
+.success-alert i {
+  margin-right: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
-/*# sourceMappingURL=ui.css.map */
+
+/* Pagination style */
+
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-link {
+  color: #007bff;
+  border: 1px solid #dee2e6;
+  transition: background-color 0.3s;
+}
+
+.page-link:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-item {
+  margin: 0 3px;
+}
+
+.page-link {
+  color: #007bff;
+  border: 1px solid #dee2e6;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+}
+
+.page-link:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.page-item.disabled .page-link {
+  pointer-events: none;
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.page-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.page-link,
+.page-item.active .page-link,
+.page-item.disabled .page-link {
+  transition: color 0.3s;
+}
+
+.pagination span {
+  padding: 8px 16px;
+}
+
+/* Custom styles for the banner */
+.custom-banner {
+  max-width: 100%;
+  /* Make the image responsive within its container */
+  height: auto;
+  /* Maintain the image's aspect ratio */
+  border: 1px solid #ddd;
+  /* Optional: Add a border for a subtle effect */
+  border-radius: 8px;
+  /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Optional: Add a box shadow for depth */
+}
+
+
+/* Optional: Add responsiveness for smaller screens */
+@media screen and (max-width: 768px) {
+  .col-md-6 {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+}
+
+
+ /* Additional Styles for Enhancement */
+ .section-heading {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.section-title {
+  font-size: 28px;
+  color: #333;
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  color: #3167eb;
+  border-color: #3167ebff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #3167ebff;
+  color: #fff;
+}
+
+.card-product-grid {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-product-grid:hover {
+  transform: scale(1.05);
+}
+
+.product-image {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.info-wrap {
+  padding: 15px;
+  text-align: center;
+}
+
+.title {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.price {
+  font-size: 16px;
+  color:#3167eb;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Add this to your CSS file or style tag */
+
+.card-product-grid {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-product-grid:hover {
+  transform: scale(1.05); /* Adjust the scale factor for the hover effect */
+}
+

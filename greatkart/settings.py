@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'category',
     'accounts',
     'store',
+    'carts',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'carts.context_processors.counter',
                 'category.context_processors.menu_links', 
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

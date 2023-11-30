@@ -15,8 +15,31 @@ class Product(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-created_date']
+
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
 
     def __str__(self):
         return self.product_name
+
+
+class Variation(models.Model):
+    COLOR = 'color'
+    SIZE = 'size'
+
+    VARIATION_CATEGORY_CHOICES = [
+        (COLOR, 'Color'),
+        (SIZE, 'Size'),
+    ]
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variation_category = models.CharField(
+        max_length=100, choices=VARIATION_CATEGORY_CHOICES)
+    variation_value = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.product} - {self.variation_category}: {self.variation_value}"
